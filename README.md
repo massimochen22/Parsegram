@@ -1,6 +1,6 @@
 # Project 3 - *Parsegram*
 
-**arsegram** is a photo sharing app similar to Instagram but using Parse as its backend.
+**Parsegram** is a photo sharing app similar to Instagram but using Parse as its backend.
 
 Time spent: **20** hours spent in total
 
@@ -41,7 +41,7 @@ GIF created with [Kap](https://getkap.co/).
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2022] [Hao Massimo Chen]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
