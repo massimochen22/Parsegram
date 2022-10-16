@@ -68,6 +68,12 @@ class LoginActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+//    private fun goToSplashScreenActivity() {
+//        val intent = Intent(this@LoginActivity, SplashScreen::class.java)
+//        startActivity(intent)
+//        finish()
+//    }
+
     companion object {
         const val TAG = "LoginActivity"
     }

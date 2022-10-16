@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
             pb.visibility =  ProgressBar.VISIBLE
             pb.postDelayed(
                 java.lang.Runnable { pb.visibility =  ProgressBar.INVISIBLE},
-                2000
+                1500
             )
             val description = findViewById<EditText>(R.id.et_writeDescription).text.toString()
             val user= ParseUser.getCurrentUser()
@@ -46,7 +46,10 @@ class MainActivity : AppCompatActivity() {
                 if (description == ""){
                     Toast.makeText(this, "Please provide description", Toast.LENGTH_SHORT).show()
                 }
-                submitPost(description,user,photoFile!!)
+                else {
+                    submitPost(description, user, photoFile!!)
+                    Toast.makeText(this, "Successfully posted!", Toast.LENGTH_SHORT).show()
+                }
             }
             else{
                 Toast.makeText(this, "Error submitting photo", Toast.LENGTH_SHORT).show()
@@ -67,7 +70,7 @@ class MainActivity : AppCompatActivity() {
                 // Load the taken image into a preview
 
                 val ivPreview:ImageView = findViewById(R.id.image_post)
-                ivPreview!!.setImageBitmap(takenImage)
+                ivPreview.setImageBitmap(takenImage)
             } else { // Result was a failure
                 Toast.makeText(this, "Error taking picture", Toast.LENGTH_SHORT).show()
             }
@@ -81,13 +84,14 @@ class MainActivity : AppCompatActivity() {
         post.setImage(ParseFile(file))
         post.saveInBackground{ exception ->
             if (exception!= null){
-                Log.i(TAG,"")
+                Toast.makeText(this, "Error submitting post", Toast.LENGTH_SHORT).show()
                 exception.printStackTrace()
-//                TODO:Show a toast with error
             }else{
-                 Log.i(TAG,"Succesfully posted!")
-//                TODO:Reset editText blank
-//                TODO: Reset imageview
+                Log.i(TAG,"Succesfully posted!")
+                val description = findViewById<EditText>(R.id.et_writeDescription)
+                description.text = null
+               val image = findViewById<ImageView>(R.id.image_post)
+                image.setImageResource(0)
             }
         }
     }
