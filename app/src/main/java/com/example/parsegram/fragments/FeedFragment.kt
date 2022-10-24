@@ -69,9 +69,9 @@ open class FeedFragment : Fragment() {
                 }
                 else{
                     if (posts!=null){
-                        for (post in posts){
-                            Log.i(TAG,"Post:"+ post.getDescription()+" username: "+ post.getUser()?.username)
-                        }
+//                        for (post in posts){
+//                            Log.i(TAG, post.createdAt.toString())
+//                        }
                         allPosts.addAll(posts)
                         adapter.notifyDataSetChanged()
                     }

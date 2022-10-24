@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.codepath.apps.restclienttemplate.TimeFormatter
 
 class PostAdapter(val context: Context, val posts: ArrayList<Post>) : RecyclerView.Adapter<PostAdapter.ViewHolder>() {
 
@@ -30,26 +31,23 @@ class PostAdapter(val context: Context, val posts: ArrayList<Post>) : RecyclerVi
         notifyDataSetChanged()
     }
 
-    // Add a list of items -- change to type used
-    fun addAll(postList: ArrayList<Post>) {
-        posts.addAll(postList)
-        notifyDataSetChanged()
-    }
-
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val tvUsername:TextView
         val ivImage: ImageView
         val tvDescription: TextView
+        val tvCreatedAt: TextView
         init{
             tvUsername = itemView.findViewById(R.id.tvUserName)
             ivImage= itemView.findViewById(R.id.ivImage)
             tvDescription = itemView.findViewById(R.id.tvDescription)
+            tvCreatedAt = itemView.findViewById(R.id.tvCreatedAt)
         }
 
         fun bind(post:Post){
             tvDescription.text = post.getDescription()
             tvUsername.text =post.getUser()?.username
-//            populate image view
+            tvCreatedAt.text = TimeFormatter.getTimeDifference(post.createdAt.toString())
+
             Glide.with(itemView.context).load(post.getImage()?.url).into(ivImage)
         }
 

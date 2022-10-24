@@ -9,7 +9,9 @@ import com.parse.ParseUser
 
 class ProfileFragment:FeedFragment() {
     override fun queryPost(){
+        adapter.clear()
         val query: ParseQuery<Post> = ParseQuery.getQuery(Post::class.java)
+        query.setLimit(20)
         query.include(Post.KEY_USER)
         query.whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser())
         query.addDescendingOrder("createdAt")
@@ -30,5 +32,6 @@ class ProfileFragment:FeedFragment() {
             }
 
         })
+        swipeContainer.setRefreshing(false)
     }
 }
