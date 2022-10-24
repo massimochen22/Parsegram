@@ -2,18 +2,20 @@ package com.example.parsegram
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.*
+import android.view.View
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.parsegram.fragments.ComposeFragment
 import com.example.parsegram.fragments.FeedFragment
 import com.example.parsegram.fragments.ProfileFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.parse.*
+import com.parse.ParseUser
 
 
 class MainActivity : AppCompatActivity() {
@@ -22,6 +24,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val toolbar:Toolbar = findViewById<View>(R.id.toolbar) as Toolbar
+//        val alertDialog = AlertDialog.Builder(this@MainActivity).create()
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        val curUsername = findViewById<TextView>(R.id.tvUserName3)
+        curUsername.text = ParseUser.getCurrentUser().username.toString()
+
         val fragmentManager: FragmentManager = supportFragmentManager
 
         findViewById<BottomNavigationView>(R.id.bottom_navigation).setOnItemSelectedListener {

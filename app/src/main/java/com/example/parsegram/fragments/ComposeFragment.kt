@@ -52,7 +52,7 @@ class ComposeFragment : Fragment() {
                     Toast.makeText(requireContext(), "Please provide description", Toast.LENGTH_SHORT).show()
                 }
                 else {
-                    submitPost(description, user, photoFile!!)
+                    submitPost(view, description, user, photoFile!!)
                     Toast.makeText(requireContext(), "Successfully posted!", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -68,7 +68,7 @@ class ComposeFragment : Fragment() {
         }
 
     }
-    fun submitPost(description:String,user:ParseUser,file: File){
+    fun submitPost(view: View, description:String,user:ParseUser,file: File){
         val post = Post()
         post.setDescription(description)
         post.setUser(user)
